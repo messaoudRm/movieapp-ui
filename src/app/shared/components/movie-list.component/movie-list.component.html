@@ -1,0 +1,18 @@
+<mat-grid-list cols="2" rowHeight="1:4" gutterSize="16px">
+  @for (movie of movies; track movie.id) {
+    <mat-grid-tile>
+      <app-movie [movie]="movie"/>
+    </mat-grid-tile>
+  } @empty {
+    <p>No movies found.</p>
+  }
+</mat-grid-list>
+
+<mat-paginator
+  [length]="totalElements"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[10, 20, 50]"
+  [showFirstLastButtons]="showFirstLastButtons"
+  (page)="onPageChange($event)"
+  aria-label="Select page">
+</mat-paginator>

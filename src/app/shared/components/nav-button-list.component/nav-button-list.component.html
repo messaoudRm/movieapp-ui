@@ -1,5 +1,11 @@
 <mat-list role="list">
-  <mat-list-item role="listitem">Item 1</mat-list-item>
-  <mat-list-item role="listitem">Item 2</mat-list-item>
-  <mat-list-item role="listitem">Item 3</mat-list-item>
+  @for (action of actionList; track action){
+
+    <mat-list-item role="listitem">
+      <button matButton (click)="navigeteTo(action.url)">
+        {{ action.name }}
+        <mat-icon>{{ action.icon }}</mat-icon>
+      </button>
+    </mat-list-item>
+  }
 </mat-list>

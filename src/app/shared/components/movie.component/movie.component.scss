@@ -1,0 +1,11 @@
+.movie-card {
+  width: 100%;
+  max-width: 300px;
+}
+
+.movie-card img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}

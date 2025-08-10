@@ -11,4 +11,21 @@ export class Movie {
     public genre: string | null,
     public posterUrl: string | null,
   ) {}
+
+
+  static fromJson(movieJson: any): Movie {
+    return new Movie(
+      movieJson.id,
+      movieJson.releaseDate ?? null,
+      movieJson.title ?? null,
+      movieJson.overview ?? null,
+      movieJson.popularity ?? null,
+      movieJson.voteCount ?? null,
+      movieJson.voteAverage ?? null,
+      movieJson.originalLanguage ?? null,
+      movieJson.genre ?? null,
+      movieJson.posterUrl ?? null,
+    );
+  }
+
 }
