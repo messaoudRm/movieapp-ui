@@ -1,0 +1,19 @@
+.navframe-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.toolbar {
+  flex: 0 0 auto;
+  border-bottom: 1px solid #ccc;
+  background-color: white;
+  z-index: 10;
+}
+
+.side-nav {
+  flex: 1 1 auto;
+  overflow: auto;
+  display: flex;
+}

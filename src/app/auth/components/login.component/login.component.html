@@ -1,0 +1,17 @@
+<div id="container">
+  <form (submit)="login()" [formGroup]="loginFromGroup">
+    <h3>Login</h3>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password">
+    </mat-form-field>
+    <button mat-flat-button [disabled]="loginFromGroup.invalid">Login</button>
+    @if (invalidCredentials){
+      <mat-error>invalid username password </mat-error>
+    }
+  </form>
+</div>

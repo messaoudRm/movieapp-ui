@@ -1,0 +1,12 @@
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="over" [opened]="showFiller()">
+    <app-nav-button-list/>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <button type="button" matButton (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+
+</mat-drawer-container>

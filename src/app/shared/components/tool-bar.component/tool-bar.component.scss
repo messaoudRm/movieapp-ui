@@ -1,0 +1,21 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc; /* ligne grise claire sous la toolbar */
+  padding-bottom: 4px; /* un petit padding si tu veux de l’espace */
+  box-sizing: border-box;
+}
+
+.spacer-left {
+  flex: 1;
+}
+
+.spacer-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+app-search-bar {
+  flex: 0 0 auto;
+}
