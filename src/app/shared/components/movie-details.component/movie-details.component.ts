@@ -1,42 +1,46 @@
-import {
-  Component,
-  inject,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
-import {
-  MatCard, MatCardActions,
-  MatCardImage,
-} from '@angular/material/card';
-import {MatButton} from '@angular/material/button';
-import {Movie} from '../../../models/Movie';
+import {Component, inject, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {MovieService} from '../../services/movie-service';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Movie} from '../../../models/Movie';
+import {MatButton} from '@angular/material/button';
 import {MatChip, MatChipSet} from '@angular/material/chips';
+import {UpperCasePipe} from '@angular/common';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardImage,
+  MatCardSubtitle,
+  MatCardTitle
+} from '@angular/material/card';
+import {MatList} from '@angular/material/list';
+
 
 @Component({
-  selector: 'app-movie',
+  selector: 'app-movie-details',
   imports: [
-    MatCard,
-    MatCardImage,
-    MatCardActions,
     MatButton,
-    MatChipSet,
     MatChip,
+    MatChipSet,
+    UpperCasePipe,
+    MatCard,
+    MatCardTitle,
+    MatCardSubtitle,
+    MatCardContent,
+    MatCardActions,
+    MatCardImage,
+    MatList,
   ],
-  templateUrl: './movie.component.html',
-  styleUrl: './movie.component.scss'
+  templateUrl: './movie-details.component.html',
+  styleUrl: './movie-details.component.scss'
 })
-export class MovieComponent implements OnInit, OnDestroy, OnChanges {
-
+export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges{
   private movieService = inject(MovieService);
   private movieSubscription: Subscription | null = null;
   private route = inject(ActivatedRoute);
   private router= inject(Router);
-  @Input() movie!: Movie;
+  movie!: Movie;
   genres: string[]= [];
   errorMessage = '';
 

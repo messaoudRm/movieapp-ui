@@ -4,9 +4,8 @@ import {RegisterComponent} from './auth/components/register.component/register.c
 import {NotFoundComponent} from './shared/components/not-found.component/not-found.component';
 import {NavFrameComponent} from './shared/components/nav-frame.component/nav-frame.component';
 import {authGuard} from './core/guards/auth-guard';
-import {MovieComponent} from './shared/components/movie.component/movie.component';
-import {Movie} from './models/Movie';
 import {MovieListComponent} from './shared/components/movie-list.component/movie-list.component';
+import {MovieDetailsComponent} from './shared/components/movie-details.component/movie-details.component';
 
 export const routes: Routes = [{
   path: '',
@@ -23,7 +22,7 @@ export const routes: Routes = [{
     component: MovieListComponent,
   }, {
     path: ':id',
-    component: MovieComponent,
+    component: MovieDetailsComponent,
   }]
 }, {
   path: 'login',
