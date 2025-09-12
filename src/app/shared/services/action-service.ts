@@ -13,7 +13,7 @@ export class ActionService {
     new UserAction('Change Password', 'vpn_key', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'changePassword'),
     new UserAction('Change Information', 'person', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'me'),
     new UserAction('Manage Movies', 'library_add', ['ADMIN', 'SUPER_ADMIN'], 'manageMovies'),
-    new UserAction('Manage Users', 'supervisor_account', ['SUPER_ADMIN'], 'manageUsers'),
+    new UserAction('Manage Users', 'supervisor_account', ['SUPER_ADMIN'], 'users'),
   ];
 
 }

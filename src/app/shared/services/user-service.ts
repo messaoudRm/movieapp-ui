@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs';
 import {User} from '../../models/User';
+import {Movie} from '../../models/Movie';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserService {
   private SUFFIX = 'users';
 
   getAllUsers(page: number, size: number) {
-    return this.http.get<any>(`${environment.apiUrl}${this.SUFFIX}?page=${page}&size=${size}`).pipe(
+    return this.http.get<any>(environment.apiUrl + this.SUFFIX + `?page=${page}&size=${size}`).pipe(
       map(response => ({
         content: response.content.map((userJson: any) => User.fromJson(userJson)),
         totalElements: response.totalElements,

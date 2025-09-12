@@ -7,6 +7,7 @@ import {authGuard} from './core/guards/auth-guard';
 import {MovieListComponent} from './shared/components/movie-list.component/movie-list.component';
 import {MovieDetailsComponent} from './shared/components/movie-details.component/movie-details.component';
 import {UserDetailsComponent} from './shared/components/user-details.component/user-details.component';
+import {UserListComponent} from './shared/components/user-list.component/user-list.component';
 
 export const routes: Routes = [{
   path: '',
@@ -29,6 +30,9 @@ export const routes: Routes = [{
   path: 'me',
   component: UserDetailsComponent
 }, {
+  path: 'users',
+  component: UserListComponent
+},{
   path: 'login',
   component: LoginComponent
 }, {
