@@ -2,15 +2,4 @@
 
   <img mat-card-image [src]="movie?.posterUrl" [alt]="'Poster of ' + movie?.title">
 
-  <mat-chip-set aria-label="Genre selection">
-    @for (genre of genres; track $index){
-      <mat-chip>{{genre}}</mat-chip>
-    }
-  </mat-chip-set>
-
-  <mat-card-actions>
-    <button mat-button>WATCHED</button>
-    <button mat-button>LATER</button>
-    <button mat-button>LIKE</button>
-  </mat-card-actions>
 </mat-card>

@@ -9,7 +9,8 @@ export class TokenService {
     return localStorage.getItem('token')
   }
 
-  setUserToken(userToken: string): void {
+  setUserToken(userToken: string, tokenType:string): void {
     localStorage.setItem('token', userToken);
+    localStorage.setItem('token_type', tokenType);
   }
 }

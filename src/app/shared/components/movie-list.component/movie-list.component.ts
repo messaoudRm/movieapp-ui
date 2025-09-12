@@ -3,7 +3,7 @@ import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {Movie} from '../../../models/Movie';
 import {MovieService} from '../../services/movie-service';
 import {MovieComponent} from '../movie.component/movie.component';
-import {Subscription} from 'rxjs';
+import {Subject, takeUntil} from 'rxjs';
 import {MatGridList, MatGridTile} from '@angular/material/grid-list';
 
 @Component({
@@ -20,7 +20,7 @@ import {MatGridList, MatGridTile} from '@angular/material/grid-list';
 export class MovieListComponent implements OnInit, OnDestroy {
 
   private movieService=inject(MovieService);
-  private moviesSubscription: Subscription | null = null;
+  private destroy$ = new Subject<void>();
 
   movies: Movie[] = [];
   totalElements = 0;
@@ -33,12 +33,14 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   loadMovies(page: number, size: number) {
-    this.movieService.getAllMovies(page, size).subscribe({
-      next: response => {
-        this.movies = response.content;
-        this.totalElements = response.totalElements;
-        this.pageSize = response.pageSize;
-        this.pageIndex = response.pageNumber;
+    this.movieService.getAllMovies(page, size)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.movies = response.content;
+          this.totalElements = response.totalElements;
+          this.pageSize = response.pageSize;
+          this.pageIndex = response.pageNumber;
       },
       error: err => {
         console.error('Error loading movies', err);
@@ -47,7 +49,8 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.moviesSubscription?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onPageChange(event: PageEvent) {

@@ -8,4 +8,14 @@ export class User {
     public email: string | null,
     public role: UserRole = 'USER',
   ) {}
+
+  static fromJson(userJson: any): User {
+    return new User(
+      userJson.id,
+      userJson.username ?? null,
+      userJson.password ?? null,
+      userJson.email ?? null,
+      userJson.role ?? null
+    );
+  }
 }

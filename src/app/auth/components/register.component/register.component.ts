@@ -4,8 +4,9 @@ import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/inpu
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth-service';
 import {Router} from '@angular/router';
-import {Subscription} from 'rxjs';
+import {Subject, takeUntil} from 'rxjs';
 import {User} from '../../../models/User';
+import {MatCard} from '@angular/material/card';
 
 @Component({
   selector: 'app-register',
@@ -15,22 +16,18 @@ import {User} from '../../../models/User';
     MatFormField,
     MatInput,
     MatLabel,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCard
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnDestroy{
-
-  ngOnDestroy(): void {
-    this.registerSubscription?.unsubscribe();
-  }
+export class RegisterComponent implements OnDestroy {
 
   private fromBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
-
-  private registerSubscription : Subscription | null = null;
+  private destroy$ = new Subject<void>();
 
   invalidUser = false;
 
@@ -40,8 +37,9 @@ export class RegisterComponent implements OnDestroy{
     'email': ['', [Validators.required]],
   });
 
-  register(){
-    this.registerSubscription = this.authService.register(this.registerFromGroup.value as User)
+  register() {
+    this.authService.register(this.registerFromGroup.value as User)
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: result => {
           this.navigateLogin();
@@ -53,7 +51,12 @@ export class RegisterComponent implements OnDestroy{
 
   }
 
-  navigateLogin(){
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  navigateLogin() {
     this.router.navigate(['login']);
   }
 

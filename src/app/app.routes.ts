@@ -6,6 +6,7 @@ import {NavFrameComponent} from './shared/components/nav-frame.component/nav-fra
 import {authGuard} from './core/guards/auth-guard';
 import {MovieListComponent} from './shared/components/movie-list.component/movie-list.component';
 import {MovieDetailsComponent} from './shared/components/movie-details.component/movie-details.component';
+import {UserDetailsComponent} from './shared/components/user-details.component/user-details.component';
 
 export const routes: Routes = [{
   path: '',
@@ -24,6 +25,9 @@ export const routes: Routes = [{
     path: ':id',
     component: MovieDetailsComponent,
   }]
+}, {
+  path: 'me',
+  component: UserDetailsComponent
 }, {
   path: 'login',
   component: LoginComponent

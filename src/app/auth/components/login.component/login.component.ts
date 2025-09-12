@@ -4,7 +4,8 @@ import {MatButton} from '@angular/material/button';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService, Credentials} from '../../services/auth-service';
 import {Router} from '@angular/router';
-import {Subscription} from 'rxjs';
+import {Subject, takeUntil} from 'rxjs';
+import {MatCard} from '@angular/material/card';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ import {Subscription} from 'rxjs';
     MatButton,
     MatError,
     ReactiveFormsModule,
+    MatCard,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -22,14 +24,15 @@ import {Subscription} from 'rxjs';
 export class LoginComponent implements OnDestroy {
 
   ngOnDestroy(): void {
-      this.loginSubscription?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private fromBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  private loginSubscription : Subscription | null = null;
+  private destroy$ = new Subject<void>();
 
   invalidCredentials = false;
 
@@ -39,7 +42,8 @@ export class LoginComponent implements OnDestroy {
   });
 
   login(){
-    this.loginSubscription = this.authService.login(this.loginFromGroup.value as Credentials)
+    this.authService.login(this.loginFromGroup.value as Credentials)
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: result => {
           this.navigateHome();
