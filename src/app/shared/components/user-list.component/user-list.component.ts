@@ -16,6 +16,9 @@ import {MatIconButton} from '@angular/material/button';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 import {MatIcon} from '@angular/material/icon';
 import {Router} from '@angular/router';
+import {DialogComponent} from '../dialog.component/dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {NotificationSnackBarService} from '../../services/notification-snack-bar-service';
 
 @Component({
   selector: 'app-user-list',
@@ -42,9 +45,11 @@ import {Router} from '@angular/router';
 })
 export class UserListComponent implements OnInit, OnDestroy {
 
-  private userService=inject(UserService);
+  private userService = inject(UserService);
   private destroy$ = new Subject<void>();
-  private router= inject(Router);
+  private router = inject(Router);
+  private dialog = inject(MatDialog);
+  private notificationService = inject(NotificationSnackBarService);
 
   users: User[] = [];
   totalElements = 0;
@@ -96,15 +101,32 @@ export class UserListComponent implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           console.log('User deleted successfully');
+          this.loadUsers(this.pageIndex, this.pageSize);
+          this.notificationService.openSnackBar('User deleted');
         },
         error: err => {
           this.errorMessage = 'Failed to delete user';
           console.error(err);
+          this.notificationService.openSnackBar('Failed to delete user');
         }
       });
   }
 
-  editUserInfo(id:number) {
+  editUserInfo(id: number) {
 
+  }
+
+  confirmDelete(id: number): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        title: 'Delete user',
+        text: 'Are you sure you want to delete this user?'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteUser(id);
+      }
+    });
   }
 }
