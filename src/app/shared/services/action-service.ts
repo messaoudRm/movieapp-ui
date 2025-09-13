@@ -7,9 +7,9 @@ import {UserAction} from '../../models/UserAction';
 export class ActionService {
   userActions: UserAction[] = [
     new UserAction('Home', 'home', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'home'),
-    new UserAction('Watched Movies', 'movie', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'watchedMovie'),
-    new UserAction('Watch Later', 'watch_later', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'watchLater'),
-    new UserAction('Favorite Movies', 'favorite', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'favorite'),
+    new UserAction('Watched Movies', 'movie', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'watched'),
+    new UserAction('Watch Later', 'watch_later', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'watch-later'),
+    new UserAction('Favorite Movies', 'favorite', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'favorites'),
     new UserAction('Change Password', 'vpn_key', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'changePassword'),
     new UserAction('Change Information', 'person', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'me'),
     new UserAction('Manage Movies', 'library_add', ['ADMIN', 'SUPER_ADMIN'], 'manageMovies'),
