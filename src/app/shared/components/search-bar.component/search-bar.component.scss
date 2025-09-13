@@ -1,4 +1,14 @@
-.form-field {
-  margin: 50px auto;
-  width: 200px;
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 300px;
 }
+
+.rounded-input {
+  flex: 1;
+  padding: 10px 20px;
+  border: 2px solid #ccc;
+  border-radius: 50px;
+  font-size: 16px;
+}
+

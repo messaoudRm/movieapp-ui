@@ -7,6 +7,21 @@
 @use '@angular/material' as mat;
 
 html {
+  color-scheme: light;
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+
+  ));
+  height: 100%;
+}
+
+html.dark-mode {
+  color-scheme: dark;
   @include mat.theme((
     color: (
       primary: mat.$azure-palette,
@@ -15,13 +30,14 @@ html {
     typography: Roboto,
     density: 0,
   ));
+  height: 100%;
 }
 
 body {
   // Default the application to a light color theme. This can be changed to
   // `dark` to enable the dark color theme, or to `light dark` to defer to the
   // user's system settings.
-  color-scheme: light;
+  //color-scheme: light;
 
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
@@ -32,24 +48,7 @@ body {
 
   // Reset the user agent margin.
   margin: 0;
+  height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-html {
-  color-scheme: light;
-  @include mat.theme((
-    color: mat.$azure-palette,
-  ));
-}
-
-html.dark-mode {
-  color-scheme: dark;
-  @include mat.theme((
-    color: mat.$azure-palette,
-  ));
-}
 
