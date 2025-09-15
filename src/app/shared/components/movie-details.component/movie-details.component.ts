@@ -15,11 +15,9 @@ import {
   MatCardTitle
 } from '@angular/material/card';
 import {MatList} from '@angular/material/list';
-import {MovieUserDto, FavoriteMoviesService} from '../../services/favorite-movies-service';
 import {AuthService} from '../../../auth/services/auth-service';
 import {NotificationSnackBarService} from '../../services/notification-snack-bar-service';
-import {WatchedMoviesService} from '../../services/watched-movies-service';
-import {WatchLaterMoviesService} from '../../services/watch-later-movies-service';
+import {GenericUserMoviesService, MovieUserDto} from '../../services/generic-user-movies-service';
 
 
 @Component({
@@ -42,9 +40,7 @@ import {WatchLaterMoviesService} from '../../services/watch-later-movies-service
 })
 export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
   private movieService = inject(MovieService);
-  private favoriteService = inject(FavoriteMoviesService);
-  private watchedService = inject(WatchedMoviesService);
-  private watchLaterService = inject(WatchLaterMoviesService);
+  private userMoviesService = inject(GenericUserMoviesService);
   private authService = inject(AuthService);
   private notificationService = inject(NotificationSnackBarService);
   private destroy$ = new Subject<void>();
@@ -96,53 +92,33 @@ export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   addToFavorite(movieId: number | null) {
-    const userId = this.authService.getUserId();
-    const favorite: MovieUserDto = {userId, movieId};
-    this.favoriteService.addToFavorite(favorite)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: () => {
-          this.notificationService.openSnackBar('Movie added to favorites');
-        },
-        error: err => {
-          console.error(err);
-          this.notificationService.openSnackBar('Failed to add favorite');
-        }
-      });
+    const SUFFIX ="favorites";
+    this.addToUserMovies(SUFFIX, movieId);
   }
 
   addToWatchLater(movieId: number | null) {
-    const userId = this.authService.getUserId();
-    const watchLater: MovieUserDto = {userId, movieId};
-
-    this.watchLaterService.addToWatchLater(watchLater)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: () => {
-          this.notificationService.openSnackBar('Movie added to watch later');
-        },
-        error: err => {
-          console.error(err);
-          this.notificationService.openSnackBar('Failed to add to watch later');
-        }
-      });
+    const SUFFIX ="watch-later";
+    this.addToUserMovies(SUFFIX, movieId);
   }
 
   addToWatched(movieId: number | null) {
-    const userId = this.authService.getUserId();
-    const watched: MovieUserDto = {userId, movieId};
+    const SUFFIX ="watched";
+    this.addToUserMovies(SUFFIX, movieId);
+  }
 
-    this.watchedService.addToWatched(watched)
+  addToUserMovies(SUFFIX: string, movieId: number | null) {
+    const userId = this.authService.getUserId();
+    const movieUserDto: MovieUserDto = {userId, movieId};
+    this.userMoviesService.addToUserMovies(SUFFIX,movieUserDto)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
-          this.notificationService.openSnackBar('Movie marked as watched');
+          this.notificationService.openSnackBar(`Movie added to ${SUFFIX}`);
         },
         error: err => {
           console.error(err);
-          this.notificationService.openSnackBar('Failed to mark as watched');
+          this.notificationService.openSnackBar(`Failed to add ${SUFFIX}`);
         }
       });
-
   }
 }

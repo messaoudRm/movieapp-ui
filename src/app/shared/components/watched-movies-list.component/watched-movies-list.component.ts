@@ -4,7 +4,7 @@ import {MovieComponent} from "../movie.component/movie.component";
 import {AuthService} from '../../../auth/services/auth-service';
 import {Subject, takeUntil} from 'rxjs';
 import {Movie} from '../../../models/Movie';
-import {WatchedMoviesService} from '../../services/watched-movies-service';
+import {GenericUserMoviesService} from '../../services/generic-user-movies-service';
 
 @Component({
   selector: 'app-watched-movies-list',
@@ -18,9 +18,10 @@ import {WatchedMoviesService} from '../../services/watched-movies-service';
 })
 export class WatchedMoviesListComponent implements OnInit, OnDestroy {
 
-  private watchedService = inject(WatchedMoviesService);
+  private watchedService = inject(GenericUserMoviesService);
   private authService = inject(AuthService);
   private destroy$ = new Subject<void>();
+  private SUFFIX = 'watched';
 
   movies: Movie[] = [];
 
@@ -29,7 +30,7 @@ export class WatchedMoviesListComponent implements OnInit, OnDestroy {
   }
 
   loadMovies() {
-    this.watchedService.getWatchedMoviesById(this.authService.getUserId())
+    this.watchedService.getUserMoviesById(this.SUFFIX, this.authService.getUserId())
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: response => {

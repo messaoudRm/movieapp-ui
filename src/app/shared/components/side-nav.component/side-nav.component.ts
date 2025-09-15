@@ -1,7 +1,7 @@
 import {Component, input, InputSignal} from '@angular/core';
 import {MatDrawer, MatDrawerContainer} from '@angular/material/sidenav';
 import {NavButtonListComponent} from '../nav-button-list.component/nav-button-list.component';
-import {MovieListComponent} from '../movie-list.component/movie-list.component';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -9,7 +9,7 @@ import {MovieListComponent} from '../movie-list.component/movie-list.component';
     MatDrawerContainer,
     MatDrawer,
     NavButtonListComponent,
-    MovieListComponent
+    RouterOutlet
   ],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss'

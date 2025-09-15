@@ -3,8 +3,8 @@ import {MatGridList, MatGridTile} from '@angular/material/grid-list';
 import {MovieComponent} from '../movie.component/movie.component';
 import {Subject, takeUntil} from 'rxjs';
 import {Movie} from '../../../models/Movie';
-import {FavoriteMoviesService} from '../../services/favorite-movies-service';
 import {AuthService} from '../../../auth/services/auth-service';
+import {GenericUserMoviesService} from '../../services/generic-user-movies-service';
 
 @Component({
   selector: 'app-favorite-movies-list',
@@ -18,9 +18,10 @@ import {AuthService} from '../../../auth/services/auth-service';
 })
 export class FavoriteMoviesListComponent implements OnInit, OnDestroy {
 
-  private favoriteService = inject(FavoriteMoviesService);
+  private favoriteService = inject(GenericUserMoviesService);
   private authService = inject(AuthService);
   private destroy$ = new Subject<void>();
+  private SUFFIX = 'favorites';
 
   movies: Movie[] = [];
 
@@ -29,7 +30,7 @@ export class FavoriteMoviesListComponent implements OnInit, OnDestroy {
   }
 
   loadMovies() {
-    this.favoriteService.getFavoriteMoviesById(this.authService.getUserId())
+    this.favoriteService.getUserMoviesById(this.SUFFIX, this.authService.getUserId())
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: response => {

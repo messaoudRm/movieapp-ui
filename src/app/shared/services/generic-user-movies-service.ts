@@ -12,16 +12,13 @@ export interface MovieUserDto {
 @Injectable({
   providedIn: 'root'
 })
-export class FavoriteMoviesService {
+export class GenericUserMoviesService {
   private http = inject(HttpClient);
-  private SUFFIX = 'favorites';
 
-
-  getAllFavoriteMovies(page: number, size: number) {
-    return this.http.get<any>(environment.apiUrl + this.SUFFIX + `?page=${page}&size=${size}`).pipe(
+  getAllUserMovies(SUFFIX: string, page: number, size: number) {
+    return this.http.get<any>(environment.apiUrl + SUFFIX + `?page=${page}&size=${size}`).pipe(
       map(response => ({
-        content: response.content.map(
-          (movieJson: any) => Movie.fromJson(movieJson)),
+        content: response.content.map((movieJson: any) => Movie.fromJson(movieJson)),
         totalElements: response.totalElements,
         pageSize: response.pageable.pageSize,
         pageNumber: response.pageNumber,
@@ -29,17 +26,17 @@ export class FavoriteMoviesService {
     );
   }
 
-  getFavoriteMoviesById(id: number | null) {
-    return this.http.get<any>(environment.apiUrl + this.SUFFIX +'/users'+ '/' + id).pipe(
+  getUserMoviesById(SUFFIX: string, userId: number | null) {
+    return this.http.get<any>(environment.apiUrl + SUFFIX + '/users/' + userId).pipe(
       map(response => response.map((movieJson: any) => Movie.fromJson(movieJson)))
     );
   }
 
-  deleteFavoriteMovie(id: number) {
-    return this.http.delete(environment.apiUrl + this.SUFFIX + '/' + id);
+  deleteUserMovie(SUFFIX: string, id: number) {
+    return this.http.delete(environment.apiUrl + SUFFIX + '/' + id);
   }
 
-  addToFavorite(movie: MovieUserDto) {
-    return this.http.post(environment.apiUrl + this.SUFFIX , movie);
+  addToUserMovies(SUFFIX: string, movie: MovieUserDto) {
+    return this.http.post(environment.apiUrl + SUFFIX, movie);
   }
 }
