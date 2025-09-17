@@ -14,7 +14,7 @@ Assurez-vous d’avoir Docker installé, puis :
 
 ```bash
   git clone https://github.com/messaoudRm/movieapp-ui.git
-  cd movieapp-frontend
+  cd movieapp-ui
 ```
 
 **Build l’application Angular en mode production**
