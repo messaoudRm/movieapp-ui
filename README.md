@@ -13,7 +13,7 @@ Assurez-vous d’avoir Docker installé, puis :
 **Cloner le dépôt**
 
 ```bash
-  git clone https://github.com/messaoudRm/movieapp-frontend.git
+  git clone https://github.com/messaoudRm/movieapp-ui.git
   cd movieapp-frontend
 ```
 
