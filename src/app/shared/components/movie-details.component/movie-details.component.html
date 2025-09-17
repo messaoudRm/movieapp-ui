@@ -3,11 +3,11 @@
   <div class="movie-details-split">
 
     <div class="movie-info">
-      <mat-card-title>{{ movie?.title }}</mat-card-title>
-      <mat-card-subtitle>Release date: {{ movie?.releaseDate }}</mat-card-subtitle>
+      <mat-card-title>{{ movie.title }}</mat-card-title>
+      <mat-card-subtitle>Release date: {{ movie.releaseDate }}</mat-card-subtitle>
 
       <mat-card-content>
-        <p class="description">{{ movie?.overview }}</p>
+        <p class="description">{{ movie.overview }}</p>
       </mat-card-content>
 
       <mat-chip-set class="genres">
@@ -17,10 +17,10 @@
       </mat-chip-set>
 
       <mat-list class="stats-vertical">
-        <p>Popularity: {{ movie?.popularity }}</p>
-        <p>Votes: {{ movie?.voteCount }}</p>
-        <p>Average: {{ movie?.voteAverage }}</p>
-        <p>Language: {{ movie?.originalLanguage | uppercase }}</p>
+        <p>Popularity: {{ movie.popularity }}</p>
+        <p>Votes: {{ movie.voteCount }}</p>
+        <p>Average: {{ movie.voteAverage }}</p>
+        <p>Language: {{ movie.originalLanguage | uppercase }}</p>
       </mat-list>
 
       <mat-card-actions class="actions">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="poster-container">
-      <img mat-card-image [src]="movie?.posterUrl" [alt]="'Poster of ' + movie?.title">
+      <img mat-card-image [src]="movie.posterUrl" [alt]="'Poster of ' + movie.title">
     </div>
   </div>
 

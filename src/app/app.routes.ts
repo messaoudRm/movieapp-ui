@@ -19,8 +19,14 @@ import {
 
 export const routes: Routes = [{
   path: '',
-  redirectTo: 'home',
+  redirectTo: 'register',
   pathMatch: 'full',
+},{
+  path: 'login',
+  component: LoginComponent
+}, {
+  path: 'register',
+  component: RegisterComponent
 }, {
   path: 'home',
   component: MovieListComponent,
@@ -55,12 +61,6 @@ export const routes: Routes = [{
   path: 'watch-later',
   canActivate: [authGuard],
   component: WatchLaterMoviesListComponent
-},{
-  path: 'login',
-  component: LoginComponent
-}, {
-  path: 'register',
-  component: RegisterComponent
 }, {
   path: '**',
   component: NotFoundComponent,
