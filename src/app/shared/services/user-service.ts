@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs';
 import {User} from '../../models/User';
-import {Movie} from '../../models/Movie';
 
 @Injectable({
   providedIn: 'root'

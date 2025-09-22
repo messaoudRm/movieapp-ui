@@ -32,8 +32,8 @@ export class GenericUserMoviesService {
     );
   }
 
-  deleteUserMovie(SUFFIX: string, id: number) {
-    return this.http.delete(environment.apiUrl + SUFFIX + '/' + id);
+  deleteUserMovie(SUFFIX: string, userId: number | null, moviesId: number | null) {
+    return this.http.delete(environment.apiUrl + SUFFIX + '/users/' + userId + '/movies/' + moviesId);
   }
 
   addToUserMovies(SUFFIX: string, movie: MovieUserDto) {

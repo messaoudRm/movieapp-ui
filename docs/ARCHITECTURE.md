@@ -21,7 +21,7 @@ flowchart TB
     end
 
     %% Flèches
-    user -->|"Accès HTTP / HTTPS"| nginx
+    user -->|"Accès HTTP"| nginx
     nginx -->|"Sert les fichiers statiques"| angularApp
     angularApp -->|"Requêtes API (HTTP/REST)"| api
 ```

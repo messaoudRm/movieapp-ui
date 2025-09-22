@@ -48,7 +48,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
 
   movie!: Movie;
   genres: string[] = [];
-  errorMessage = '';
+ errorMessage = '';
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -118,6 +118,36 @@ export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
         error: err => {
           console.error(err);
           this.notificationService.openSnackBar(`Failed to add ${SUFFIX}`);
+        }
+      });
+  }
+
+  deleteFromFavorite(movieId: number | null) {
+    const SUFFIX ="favorites";
+    this.deleteFromUserMovies(SUFFIX, movieId);
+  }
+
+  deleteFromWatchLater(movieId: number | null) {
+    const SUFFIX ="watch-later";
+    this.deleteFromUserMovies(SUFFIX, movieId);
+  }
+
+  deleteFromWatched(movieId: number | null) {
+    const SUFFIX ="watched";
+    this.deleteFromUserMovies(SUFFIX, movieId);
+  }
+
+  deleteFromUserMovies(SUFFIX: string, movieId: number | null) {
+    const userId = this.authService.getUserId();
+    this.userMoviesService.deleteUserMovie(SUFFIX,userId,movieId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.notificationService.openSnackBar(`Movie deleted from ${SUFFIX}`);
+        },
+        error: err => {
+          console.error(err);
+          this.notificationService.openSnackBar(`Failed deleted from ${SUFFIX}`);
         }
       });
   }

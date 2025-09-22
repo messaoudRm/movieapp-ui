@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY package*.json ./
 # --legacy-peer-deps permet d’éviter certains conflits de versions
-RUN npm ci --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 
 COPY . .
 RUN npx ng build --configuration=$build_env

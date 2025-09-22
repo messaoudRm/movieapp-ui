@@ -27,6 +27,10 @@
         <button mat-raised-button (click)="addToWatched(movie.id)">WATCHED</button>
         <button mat-raised-button (click)="addToWatchLater(movie.id)">WATCH LATER</button>
         <button mat-raised-button (click)="addToFavorite(movie.id)">LIKE</button>
+
+        <button mat-raised-button (click)="deleteFromWatched(movie.id)">UNWATCHED</button>
+        <button mat-raised-button (click)="deleteFromWatchLater(movie.id)">REMOVE WATCH LATER</button>
+        <button mat-raised-button (click)="deleteFromFavorite(movie.id)">UNLIKE</button>
       </mat-card-actions>
     </div>
 
