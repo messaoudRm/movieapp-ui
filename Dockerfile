@@ -3,6 +3,9 @@ FROM node:20-alpine AS build
 ARG build_env=production
 WORKDIR /app
 
+# Installer les certificats SSL et curl
+RUN apk add --no-cache bash curl ca-certificates
+
 COPY package*.json ./
 # --legacy-peer-deps permet d’éviter certains conflits de versions
 RUN npm install --legacy-peer-deps
