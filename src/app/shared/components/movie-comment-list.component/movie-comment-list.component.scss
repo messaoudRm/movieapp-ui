@@ -2,30 +2,54 @@
 .comments-container {
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* empêche de scroller la page entière */
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  flex: 1;
+  background: transparent; // Fond transparent
 }
 
 /* Liste de commentaires scrollable */
 .comments-scroll {
-  flex: 1; /* prend tout l’espace restant */
+  flex: 1;
   overflow-y: auto;
-  padding: 1rem 0;
+  min-height: 0;
+  padding: 0;
+  background: transparent; // Fond transparent
+
+  mat-list {
+    padding: 0;
+    min-height: min-content;
+    background: transparent; // Fond transparent
+
+    .comment {
+      display: block;
+      height: auto;
+      margin-bottom: 0.5rem;
+      background: transparent; // Fond transparent
+
+      ::ng-deep .mat-list-item-content {
+        padding: 0 !important;
+        display: block;
+        width: 100%;
+        background: transparent; // Fond transparent
+      }
+    }
+  }
 }
 
-/* Carte d’ajout de commentaire */
+/* Carte d'ajout de commentaire */
 .add-comment-card {
   box-sizing: border-box;
-  border-radius: 0;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  position: sticky;
-  bottom: 0;
-  backdrop-filter: blur(8px);
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
-/* Formulaire à l’intérieur */
 .comment-form {
   display: flex;
   align-items: center;
@@ -33,9 +57,10 @@
   gap: 1rem;
 }
 
-/* Champ texte */
 .comment-input {
   flex: 1;
 }
 
-
+.error-message {
+  margin-top: 0.5rem;
+}

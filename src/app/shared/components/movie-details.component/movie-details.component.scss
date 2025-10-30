@@ -14,11 +14,13 @@
   display: flex;
   flex-direction: row;
   height: 100%;
+  flex: 1;
+  min-height: 0;
 }
 
-/* === Zone gauche : infos ou commentaires === */
+/* === Zone gauche : infos === */
 .movie-info {
-  flex: 0 0 60%; /* Toujours 60% pour la partie texte */
+  flex: 0 0 60%;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -26,15 +28,55 @@
   box-sizing: border-box;
   height: 100%;
   overflow: hidden;
+  min-height: 0;
+}
+
+/* === Section commentaires === */
+.comments-section {
+  flex: 0 0 60%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+
+  mat-card-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+    height: auto;
+  }
+}
+
+.comments-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+
+  // Supprimez toute bordure et fond de débogage
+  border: none !important;
+  background: transparent !important;
+
+  app-movie-comment-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    flex: 1;
+  }
 }
 
 /* === Zone droite : poster === */
 .poster-container {
-  flex: 0 0 40%; /* Toujours 40% pour le poster */
+  flex: 0 0 40%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 0;
 }
 
 .poster-container img {
@@ -44,7 +86,33 @@
   border-left: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-/* === Titres et contenu texte === */
+/* === Configuration des tabs === */
+mat-tab-group {
+  height: 100%;
+
+  ::ng-deep {
+    .mat-tab-body-wrapper {
+      flex: 1;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .mat-tab-body {
+      height: 100%;
+      min-height: 0;
+    }
+
+    .mat-tab-body-content {
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+/* === Styles pour le premier onglet === */
 .movie-info mat-card-title {
   font-size: 2rem;
   margin-bottom: 8px;
@@ -55,7 +123,6 @@
   line-height: 1.5;
 }
 
-/* === Genres === */
 .genres {
   display: flex;
   flex-wrap: wrap;
@@ -63,7 +130,6 @@
   margin: 12px 0;
 }
 
-/* === Statistiques === */
 .stats-vertical {
   display: flex;
   flex-direction: column;
@@ -72,36 +138,9 @@
   font-size: 0.95rem;
 }
 
-/* === Actions === */
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: auto;
-}
-
-/* === Zone comments === */
-.comments-panel {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.comments-panel mat-card-title {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-}
-
-.comments-list {
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 8px;
-}
-
-.comments-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.comments-list::-webkit-scrollbar-thumb {
-  border-radius: 3px;
 }

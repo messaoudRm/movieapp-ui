@@ -2,7 +2,7 @@
 
   <mat-tab label="Details">
     <mat-card class="movie-card-details">
-      <div class="movie-details-split normal">
+      <div class="movie-details-split">
         <div class="movie-info">
           <mat-card-title>{{ movie.title }}</mat-card-title>
           <mat-card-subtitle>
@@ -44,21 +44,19 @@
     </mat-card>
   </mat-tab>
 
-
   <mat-tab label="Comments">
     <mat-card class="movie-card-details">
-      <div class="movie-details-split normal">
-        <div class="movie-info comments-panel">
+      <div class="movie-details-split">
+        <div class="comments-section">
           <mat-card-title>Comments</mat-card-title>
-          <mat-card-content class="comments-list">
+          <div class="comments-content">
             <app-movie-comment-list [movieId]="movie.id"></app-movie-comment-list>
-          </mat-card-content>
+          </div>
         </div>
 
         <div class="poster-container">
           <img mat-card-image [src]="movie.posterUrl" [alt]="'Poster of ' + movie.title" />
         </div>
-
       </div>
     </mat-card>
   </mat-tab>

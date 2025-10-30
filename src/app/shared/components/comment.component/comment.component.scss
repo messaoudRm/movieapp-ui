@@ -1,73 +1,66 @@
 .comment-card {
-  width: 700px;
-  height: auto; /*  prend toute la largeur de la fenêtre */
-  margin: 0 0 1rem -0.5rem; /* petit ajustement pour compenser le padding éventuel du parent */
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 1rem 0;
   box-sizing: border-box;
-  position: relative;
-  padding-top: 0.5rem;
-  border-radius: 0; /* bord droit et gauche alignés à la fenêtre */
+  padding: 1rem;
+  border-radius: 8px;
   box-shadow: none;
-  background-color: transparent
-}
+  background-color: transparent;
 
-/* Header principal */
-.comment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 0 1rem;
-}
+  /* Header principal */
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
 
-/* Groupe gauche (avatar + user + date) */
-.left-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+  /* Groupe gauche */
+  .left-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-/* Ligne du haut : icône + nom */
-.top-row {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
+  /* Ligne du haut */
+  .top-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
 
-/* Icône */
-.avatar {
-  font-size: 32px;
-  width: 32px;
-  height: 32px;
-}
+  /* Icône */
+  .avatar {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }
 
-/* Nom utilisateur */
-.username {
-  font-size: 1rem;
-}
+  /* Nom utilisateur */
+  .username {
+    font-size: 1rem;
+    font-weight: 500;
+  }
 
-/* Date en dessous */
-.date {
-  font-size: 0.8rem;
-  margin-top: 0.15rem;
-}
+  /* Date */
+  .date {
+    font-size: 0.8rem;
+    margin-top: 0.15rem;
+  }
 
-/* Chip à droite */
-.sentiment-chip {
-  margin-top: 0.3rem;
-  margin-right: 1rem;
-}
+  /* Chip sentiment */
+  .sentiment-chip {
+    margin-top: 0.3rem;
+  }
 
-/* Contenu du commentaire */
-mat-card-content {
-  margin-top: 0.25rem;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  padding: 0 1rem 0.75rem 1rem;
+  /* Contenu */
+  mat-card-content {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    padding: 0;
+    word-wrap: break-word;
+  }
 }
-
-/* Supprime les marges du grid-list si utilisée */
-::ng-deep mat-grid-tile .mat-grid-tile-content {
-  width: 100vw !important;
-  padding: 0 !important;
-  justify-content: stretch !important;
-}
-
