@@ -47,20 +47,16 @@
 
   <mat-tab label="Comments">
     <mat-card class="movie-card-details">
-      <div class="movie-details-split">
+      <div class="movie-details-split normal">
+        <div class="movie-info comments-panel">
+          <mat-card-title>Comments</mat-card-title>
+          <mat-card-content class="comments-list">
+            <app-movie-comment-list [movieId]="movie.id"></app-movie-comment-list>
+          </mat-card-content>
+        </div>
 
         <div class="poster-container">
           <img mat-card-image [src]="movie.posterUrl" [alt]="'Poster of ' + movie.title" />
-        </div>
-
-        <div class="movie-info comments-panel">
-          <div class="movie-info">
-            <mat-card-content>
-              <div class="movie-info">
-                <app-movie-comment-list [movieId]="movie.id"/>
-              </div>
-            </mat-card-content>
-          </div>
         </div>
 
       </div>

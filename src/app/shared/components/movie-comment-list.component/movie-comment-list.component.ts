@@ -2,7 +2,6 @@ import {Component, inject, Input, OnDestroy, OnInit} from '@angular/core';
 import {CommentComponent} from "../comment.component/comment.component";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatCard} from "@angular/material/card";
-import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 import {MatIconButton} from "@angular/material/button";
 import {MatError, MatFormField, MatInput, MatLabel} from "@angular/material/input";
 import {MatIcon} from '@angular/material/icon';
@@ -11,24 +10,25 @@ import {CommentService} from '../../services/comment-service';
 import {AuthService} from '../../../auth/services/auth-service';
 import {Subject, takeUntil} from 'rxjs';
 import {Comment} from '../../../models/Comment';
+import {MatList, MatListItem} from '@angular/material/list';
 
 @Component({
   selector: 'app-movie-comment-list',
-    imports: [
-        CommentComponent,
-        FormsModule,
-        MatCard,
-        MatError,
-        MatFormField,
-        MatGridList,
-        MatGridTile,
-        MatIcon,
-        MatIconButton,
-        MatInput,
-        MatLabel,
-        MatTooltip,
-        ReactiveFormsModule
-    ],
+  imports: [
+    CommentComponent,
+    FormsModule,
+    MatCard,
+    MatError,
+    MatFormField,
+    MatIcon,
+    MatIconButton,
+    MatInput,
+    MatLabel,
+    MatTooltip,
+    ReactiveFormsModule,
+    MatList,
+    MatListItem
+  ],
   templateUrl: './movie-comment-list.component.html',
   styleUrl: './movie-comment-list.component.scss'
 })
