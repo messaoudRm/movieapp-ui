@@ -1,0 +1,41 @@
+/* Conteneur global */
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* empêche de scroller la page entière */
+}
+
+/* Liste de commentaires scrollable */
+.comments-scroll {
+  flex: 1; /* prend tout l’espace restant */
+  overflow-y: auto;
+  padding: 1rem 0;
+}
+
+/* Carte d’ajout de commentaire */
+.add-comment-card {
+  box-sizing: border-box;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  position: sticky;
+  bottom: 0;
+  backdrop-filter: blur(8px);
+}
+
+/* Formulaire à l’intérieur */
+.comment-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+/* Champ texte */
+.comment-input {
+  flex: 1;
+}
+
+

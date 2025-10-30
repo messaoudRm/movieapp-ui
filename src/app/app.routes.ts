@@ -16,6 +16,7 @@ import {
 import {
   WatchLaterMoviesListComponent
 } from './shared/components/watch-later-movies-list.component/watch-later-movies-list.component';
+import {UserCommentListComponent} from './shared/components/user-comment-list.component/user-comment-list.component';
 
 export const routes: Routes = [{
   path: '',
@@ -61,7 +62,11 @@ export const routes: Routes = [{
   path: 'watch-later',
   canActivate: [authGuard],
   component: WatchLaterMoviesListComponent
-}, {
+},{
+  path: 'comments',
+  canActivate: [authGuard],
+  component: UserCommentListComponent
+},{
   path: '**',
   component: NotFoundComponent,
 },];

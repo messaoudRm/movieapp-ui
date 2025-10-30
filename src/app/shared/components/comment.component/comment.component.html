@@ -1,0 +1,29 @@
+<mat-card class="comment-card" appearance="outlined">
+  <div class="comment-header">
+    <div class="left-group">
+      <div class="top-row">
+        <mat-icon class="avatar">person</mat-icon>
+        <span class="username">{{ comment.username }}</span>
+      </div>
+      <div class="date">— {{ comment.createdAt | date: 'short' }}</div>
+    </div>
+
+    <div class="sentiment-chip">
+      <mat-chip-set aria-label="Sentiment">
+        <mat-chip>{{ comment.sentimentLabel }}</mat-chip>
+        @if (showDelete) {
+          <button
+            mat-icon-button
+            aria-label="Delete"
+            (click)="onDeleteClick()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        }
+      </mat-chip-set>
+    </div>
+  </div>
+
+  <mat-card-content>
+    <p>{{ comment.content }}</p>
+  </mat-card-content>
+</mat-card>

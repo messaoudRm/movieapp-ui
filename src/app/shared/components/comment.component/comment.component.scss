@@ -1,0 +1,71 @@
+.comment-card {
+  width: 700px;
+  height: auto; /*  prend toute la largeur de la fenêtre */
+  margin: 0 0 1rem -0.5rem; /* petit ajustement pour compenser le padding éventuel du parent */
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 0.5rem;
+  border-radius: 0; /* bord droit et gauche alignés à la fenêtre */
+}
+
+/* Header principal */
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 1rem;
+}
+
+/* Groupe gauche (avatar + user + date) */
+.left-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Ligne du haut : icône + nom */
+.top-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Icône */
+.avatar {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+/* Nom utilisateur */
+.username {
+  font-size: 1rem;
+}
+
+/* Date en dessous */
+.date {
+  font-size: 0.8rem;
+  margin-top: 0.15rem;
+}
+
+/* Chip à droite */
+.sentiment-chip {
+  margin-top: 0.3rem;
+  margin-right: 1rem;
+}
+
+/* Contenu du commentaire */
+mat-card-content {
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding: 0 1rem 0.75rem 1rem;
+}
+
+/* Supprime les marges du grid-list si utilisée */
+::ng-deep mat-grid-tile .mat-grid-tile-content {
+  width: 100vw !important;
+  padding: 0 !important;
+  justify-content: stretch !important;
+}
+

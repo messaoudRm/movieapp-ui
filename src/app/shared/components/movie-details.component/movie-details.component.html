@@ -1,42 +1,69 @@
-<mat-card class="movie-card-details">
+<mat-tab-group mat-stretch-tabs>
 
-  <div class="movie-details-split">
+  <mat-tab label="Details">
+    <mat-card class="movie-card-details">
+      <div class="movie-details-split normal">
+        <div class="movie-info">
+          <mat-card-title>{{ movie.title }}</mat-card-title>
+          <mat-card-subtitle>
+            Release date: {{ movie.releaseDate }}
+          </mat-card-subtitle>
 
-    <div class="movie-info">
-      <mat-card-title>{{ movie.title }}</mat-card-title>
-      <mat-card-subtitle>Release date: {{ movie.releaseDate }}</mat-card-subtitle>
+          <mat-card-content>
+            <p class="description">{{ movie.overview }}</p>
+          </mat-card-content>
 
-      <mat-card-content>
-        <p class="description">{{ movie.overview }}</p>
-      </mat-card-content>
+          <mat-chip-set class="genres">
+            @for (genre of genres; track $index) {
+              <mat-chip color="primary" selected>{{ genre }}</mat-chip>
+            }
+          </mat-chip-set>
 
-      <mat-chip-set class="genres">
-        @for (genre of genres; track $index){
-          <mat-chip color="primary" selected>{{ genre }}</mat-chip>
-        }
-      </mat-chip-set>
+          <mat-list class="stats-vertical">
+            <p>Popularity: {{ movie.popularity }}</p>
+            <p>Votes: {{ movie.voteCount }}</p>
+            <p>Average: {{ movie.voteAverage }}</p>
+            <p>Language: {{ movie.originalLanguage | uppercase }}</p>
+          </mat-list>
 
-      <mat-list class="stats-vertical">
-        <p>Popularity: {{ movie.popularity }}</p>
-        <p>Votes: {{ movie.voteCount }}</p>
-        <p>Average: {{ movie.voteAverage }}</p>
-        <p>Language: {{ movie.originalLanguage | uppercase }}</p>
-      </mat-list>
+          <mat-card-actions class="actions">
+            <button mat-raised-button (click)="addToWatched(movie.id)">WATCHED</button>
+            <button mat-raised-button (click)="addToWatchLater(movie.id)">WATCH LATER</button>
+            <button mat-raised-button (click)="addToFavorite(movie.id)">LIKE</button>
 
-      <mat-card-actions class="actions">
-        <button mat-raised-button (click)="addToWatched(movie.id)">WATCHED</button>
-        <button mat-raised-button (click)="addToWatchLater(movie.id)">WATCH LATER</button>
-        <button mat-raised-button (click)="addToFavorite(movie.id)">LIKE</button>
+            <button mat-raised-button (click)="deleteFromWatched(movie.id)">UNWATCHED</button>
+            <button mat-raised-button (click)="deleteFromWatchLater(movie.id)">REMOVE WATCH LATER</button>
+            <button mat-raised-button (click)="deleteFromFavorite(movie.id)">UNLIKE</button>
+          </mat-card-actions>
+        </div>
 
-        <button mat-raised-button (click)="deleteFromWatched(movie.id)">UNWATCHED</button>
-        <button mat-raised-button (click)="deleteFromWatchLater(movie.id)">REMOVE WATCH LATER</button>
-        <button mat-raised-button (click)="deleteFromFavorite(movie.id)">UNLIKE</button>
-      </mat-card-actions>
-    </div>
+        <div class="poster-container">
+          <img mat-card-image [src]="movie.posterUrl" [alt]="'Poster of ' + movie.title" />
+        </div>
+      </div>
+    </mat-card>
+  </mat-tab>
 
-    <div class="poster-container">
-      <img mat-card-image [src]="movie.posterUrl" [alt]="'Poster of ' + movie.title">
-    </div>
-  </div>
 
-</mat-card>
+  <mat-tab label="Comments">
+    <mat-card class="movie-card-details">
+      <div class="movie-details-split">
+
+        <div class="poster-container">
+          <img mat-card-image [src]="movie.posterUrl" [alt]="'Poster of ' + movie.title" />
+        </div>
+
+        <div class="movie-info comments-panel">
+          <div class="movie-info">
+            <mat-card-content>
+              <div class="movie-info">
+                <app-movie-comment-list [movieId]="movie.id"/>
+              </div>
+            </mat-card-content>
+          </div>
+        </div>
+
+      </div>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

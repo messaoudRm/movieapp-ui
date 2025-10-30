@@ -18,7 +18,8 @@ import {MatList} from '@angular/material/list';
 import {AuthService} from '../../../auth/services/auth-service';
 import {NotificationSnackBarService} from '../../services/notification-snack-bar-service';
 import {GenericUserMoviesService, MovieUserDto} from '../../services/generic-user-movies-service';
-
+import {MatTab, MatTabGroup} from '@angular/material/tabs';
+import {MovieCommentListComponent} from '../movie-comment-list.component/movie-comment-list.component';
 
 @Component({
   selector: 'app-movie-details',
@@ -34,26 +35,43 @@ import {GenericUserMoviesService, MovieUserDto} from '../../services/generic-use
     MatCardActions,
     MatCardImage,
     MatList,
+    MatTab,
+    MatTabGroup,
+    MovieCommentListComponent
   ],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.scss'
 })
 export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
+
   private movieService = inject(MovieService);
   private userMoviesService = inject(GenericUserMoviesService);
   private authService = inject(AuthService);
   private notificationService = inject(NotificationSnackBarService);
-  private destroy$ = new Subject<void>();
   private route = inject(ActivatedRoute);
 
-  movie!: Movie;
-  genres: string[] = [];
- errorMessage = '';
+  private destroy$ = new Subject<void>();
+  protected movie!: Movie;
+  protected genres: string[] = [];
 
   ngOnInit(): void {
+    this.loadMovies();
+  }
+
+  ngOnChanges(): void {
+    this.updateGenres();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private loadMovies() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
-      this.movieService.getMovieById(id)
+      this.movieService
+        .getMovieById(id)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: movie => {
@@ -65,17 +83,12 @@ export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
             }
           },
           error: err => {
-            this.errorMessage = 'Failed to load movie';
-            console.error(err);
+            console.error("Failed to load movie",err);
           }
         });
     } else {
-      this.errorMessage = 'Invalid movie ID';
+      console.error("Invalid movie ID");
     }
-  }
-
-  ngOnChanges(): void {
-    this.updateGenres();
   }
 
   private updateGenres(): void {
@@ -84,11 +97,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
         .split(',')
         .map(elem => elem.trim());
     }
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   addToFavorite(movieId: number | null) {
@@ -109,7 +117,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
   addToUserMovies(SUFFIX: string, movieId: number | null) {
     const userId = this.authService.getUserId();
     const movieUserDto: MovieUserDto = {userId, movieId};
-    this.userMoviesService.addToUserMovies(SUFFIX,movieUserDto)
+    this.userMoviesService
+      .addToUserMovies(SUFFIX,movieUserDto)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
@@ -139,7 +148,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
 
   deleteFromUserMovies(SUFFIX: string, movieId: number | null) {
     const userId = this.authService.getUserId();
-    this.userMoviesService.deleteUserMovie(SUFFIX,userId,movieId)
+    this.userMoviesService
+      .deleteUserMovie(SUFFIX,userId,movieId)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {

@@ -1,0 +1,11 @@
+ <div class="comments-scroll">
+    <mat-grid-list cols="1" rowHeight="9:1">
+      @for (comment of comments; track comment.id) {
+        <mat-grid-tile class="comment">
+          <app-comment [comment]="comment" [showDelete]="isUserCommentsRoute" (delete)="deleteComment($event)"></app-comment>
+        </mat-grid-tile>
+      } @empty {
+        <p>No comments found.</p>
+      }
+    </mat-grid-list>
+  </div>

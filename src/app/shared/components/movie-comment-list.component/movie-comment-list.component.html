@@ -1,0 +1,40 @@
+<div class="comments-container">
+
+  <div class="comments-scroll">
+    <mat-grid-list cols="1" rowHeight="8:1">
+      @for (comment of comments; track comment.id) {
+        <mat-grid-tile class="comment">
+          <app-comment [comment]="comment"></app-comment>
+        </mat-grid-tile>
+      } @empty {
+        <p>No comments found.</p>
+      }
+    </mat-grid-list>
+  </div>
+
+  <mat-card class="add-comment-card">
+    <form (ngSubmit)="submitComment()" [formGroup]="commentFormGroup" class="comment-form">
+      <mat-form-field appearance="outline" class="comment-input">
+        <mat-label>Write a comment...</mat-label>
+        <input
+          matInput
+          formControlName="content"
+          placeholder="Type your comment here"
+        />
+      </mat-form-field>
+
+      <button
+        mat-icon-button
+        type="submit"
+        [disabled]="commentFormGroup.invalid"
+        matTooltip="Send"
+      >
+        <mat-icon>send</mat-icon>
+      </button>
+    </form>
+
+    @if (invalidComment) {
+      <mat-error class="error-message">Comment cannot be empty.</mat-error>
+    }
+  </mat-card>
+</div>
