@@ -23,16 +23,22 @@ export class CommentService {
 
   getCommentsByMovieId(movieId: number | null) {
     return this.http.get<Comment[]>(environment.apiUrl + this.SUFFIX + '/movie/' + movieId)
-      .pipe(map(response => response.map(commentJson => Comment.fromJson(commentJson))));
+      .pipe(map(this.sortAndMapComments));
   }
 
   getCommentsByUserId(userId: number | null) {
     return this.http.get<Comment[]>(environment.apiUrl + this.SUFFIX + '/user/' + userId)
-      .pipe(map(response => response.map(commentJson => Comment.fromJson(commentJson))));
+      .pipe(map(this.sortAndMapComments));
   }
 
   deleteComment(commentId: number | null) {
     return this.http.delete(environment.apiUrl + this.SUFFIX + '/' + commentId);
+  }
+
+  private sortAndMapComments(response: Comment[]): Comment[] {
+    return response
+      .map(commentJson => Comment.fromJson(commentJson))
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 }
 

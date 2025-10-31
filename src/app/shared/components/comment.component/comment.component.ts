@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {
   MatCard,
   MatCardContent,
@@ -7,7 +7,6 @@ import {MatChip, MatChipSet} from '@angular/material/chips';
 import {DatePipe} from '@angular/common';
 import { Comment } from '../../../models/Comment';
 import {MatIcon} from '@angular/material/icon';
-import {MatIconButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-comment',
@@ -18,7 +17,6 @@ import {MatIconButton} from '@angular/material/button';
     MatCard,
     MatChipSet,
     MatIcon,
-    MatIconButton,
   ],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.scss'
@@ -26,11 +24,5 @@ import {MatIconButton} from '@angular/material/button';
 export class CommentComponent {
 
   @Input() comment!: Comment;
-  @Input() showDelete = false;
-  @Output() delete = new EventEmitter<number>();
-
-  onDeleteClick(): void {
-    this.delete.emit(this.comment.id);
-  }
 
 }

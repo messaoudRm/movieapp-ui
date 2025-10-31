@@ -11,14 +11,6 @@
     <div class="sentiment-chip">
       <mat-chip-set aria-label="Sentiment">
         <mat-chip>{{ comment.sentimentLabel }}</mat-chip>
-        @if (showDelete) {
-          <button
-            mat-icon-button
-            aria-label="Delete"
-            (click)="onDeleteClick()">
-            <mat-icon>delete</mat-icon>
-          </button>
-        }
       </mat-chip-set>
     </div>
   </div>

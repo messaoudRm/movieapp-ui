@@ -1,11 +1,60 @@
- <div class="comments-scroll">
-    <mat-grid-list cols="1" rowHeight="9:1">
-      @for (comment of comments; track comment.id) {
-        <mat-grid-tile class="comment">
-          <app-comment [comment]="comment" [showDelete]="isUserCommentsRoute" (delete)="deleteComment($event)"></app-comment>
-        </mat-grid-tile>
-      } @empty {
-        <p>No comments found.</p>
-      }
-    </mat-grid-list>
-  </div>
+<table mat-table [dataSource]="comments" class="mat-elevation-z8 full-width">
+
+  <!-- Movie -->
+  <ng-container matColumnDef="movie">
+    <th mat-header-cell *matHeaderCellDef> Movie </th>
+    <td mat-cell *matCellDef="let comment"> {{ comment.movieTitle }} </td>
+  </ng-container>
+
+  <!-- Content -->
+  <ng-container matColumnDef="content">
+    <th mat-header-cell *matHeaderCellDef> Comment </th>
+    <td mat-cell *matCellDef="let comment"> {{ comment.content }} </td>
+  </ng-container>
+
+  <!-- Sentiment -->
+  <ng-container matColumnDef="sentiment">
+    <th mat-header-cell *matHeaderCellDef> Sentiment </th>
+    <td mat-cell *matCellDef="let comment">
+      <mat-chip>
+        {{ comment.sentimentLabel }}
+      </mat-chip>
+    </td>
+  </ng-container>
+
+  <!-- Date -->
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let comment">
+      {{ comment.createdAt | date: 'shortTime' }}
+    </td>
+  </ng-container>
+
+  <!-- Hour -->
+  <ng-container matColumnDef="hour">
+    <th mat-header-cell *matHeaderCellDef> Hour </th>
+    <td mat-cell *matCellDef="let comment">
+      {{ comment.createdAt | date: 'shortTime' }}
+    </td>
+  </ng-container>
+
+  <!-- Actions -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let comment">
+      <button
+        mat-icon-button
+        color="warn"
+        aria-label="Delete"
+        (click)="deleteComment(comment.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Header & Rows -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+

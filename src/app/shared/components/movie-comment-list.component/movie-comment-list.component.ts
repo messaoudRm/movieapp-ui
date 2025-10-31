@@ -67,18 +67,12 @@ export class MovieCommentListComponent implements OnInit, OnDestroy {
         next: (response) => {
           this.movieId = response[0].movieId;
           this.movieTitle = response[0].movieTitle;
-          this.comments = this.sortCommentsByDateDesc(response);
+          this.comments = response;
         },
         error: (err) => {
           console.error('Error while loading comments', err)
         }
       });
-  }
-
-  private sortCommentsByDateDesc(comments: Comment[]): Comment[] {
-    return comments.sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
   }
 
   submitComment() {

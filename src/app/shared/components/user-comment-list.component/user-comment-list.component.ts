@@ -1,19 +1,41 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {CommentComponent} from '../comment.component/comment.component';
-import {MatGridList, MatGridTile} from '@angular/material/grid-list';
 import {CommentService} from '../../services/comment-service';
 import {AuthService} from '../../../auth/services/auth-service';
 import {Subject, takeUntil} from 'rxjs';
 import {Comment} from '../../../models/Comment';
 import {NotificationSnackBarService} from '../../services/notification-snack-bar-service';
 import {Router} from '@angular/router';
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+  MatTable
+} from '@angular/material/table';
+import {MatChip} from '@angular/material/chips';
+import {DatePipe} from '@angular/common';
+import {MatIconButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-user-comment-list.component',
   imports: [
-    CommentComponent,
-    MatGridList,
-    MatGridTile,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCell,
+    MatHeaderCellDef,
+    MatCell,
+    MatCellDef,
+    MatChip,
+    DatePipe,
+    MatIconButton,
+    MatIcon,
+    MatHeaderRow,
+    MatHeaderRowDef,
+    MatRow,
+    MatRowDef
   ],
   templateUrl: './user-comment-list.component.html',
   styleUrl: './user-comment-list.component.scss'
@@ -29,6 +51,7 @@ export class UserCommentListComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   protected comments: Comment[] = [];
   protected isUserCommentsRoute = false;
+  protected displayedColumns: string[] = ['movie', 'content', 'sentiment', 'createdAt', 'hour', 'action'];
 
 
   ngOnInit() {
