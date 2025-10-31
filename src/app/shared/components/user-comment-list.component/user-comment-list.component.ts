@@ -48,7 +48,7 @@ export class UserCommentListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
-          this.comments = response.comments;
+          this.comments = response;
         },
         error: (err) => {
           console.error('Error while loading comments', err);

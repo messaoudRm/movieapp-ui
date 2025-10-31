@@ -65,9 +65,9 @@ export class MovieCommentListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
-          this.movieId = response.movieId;
-          this.movieTitle = response.movieTitle;
-          this.comments = this.sortCommentsByDateDesc(response.comments);
+          this.movieId = response[0].movieId;
+          this.movieTitle = response[0].movieTitle;
+          this.comments = this.sortCommentsByDateDesc(response);
         },
         error: (err) => {
           console.error('Error while loading comments', err)

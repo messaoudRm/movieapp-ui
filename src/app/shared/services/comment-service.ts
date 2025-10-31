@@ -22,32 +22,13 @@ export class CommentService {
   }
 
   getCommentsByMovieId(movieId: number | null) {
-    return this.http.get<any>(environment.apiUrl + this.SUFFIX + '/movie/' + movieId).pipe(
-      map(response => ({
-        movieId: response.movieId,
-        movieTitle: response.movieTitle,
-        comments: response.comments.map((commentJson: any) =>
-          Comment.fromJson(commentJson, {
-            id: response.movieId,
-            title: response.movieTitle
-          })
-        )
-      }))
-    );
+    return this.http.get<Comment[]>(environment.apiUrl + this.SUFFIX + '/movie/' + movieId)
+      .pipe(map(response => response.map(commentJson => Comment.fromJson(commentJson))));
   }
 
   getCommentsByUserId(userId: number | null) {
-    return this.http.get<any>(environment.apiUrl + this.SUFFIX + '/user/' + userId).pipe(
-      map(response => ({
-        userId: response.userId,
-        username: response.username,
-        comments: response.comments.map((commentJson: any) =>
-          Comment.fromJson(commentJson,{
-            id: response.movieId,
-            title: response.movieTitle
-          }))
-      }))
-    );
+    return this.http.get<Comment[]>(environment.apiUrl + this.SUFFIX + '/user/' + userId)
+      .pipe(map(response => response.map(commentJson => Comment.fromJson(commentJson))));
   }
 
   deleteComment(commentId: number | null) {
