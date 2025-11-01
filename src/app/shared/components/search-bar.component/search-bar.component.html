@@ -1,7 +1,38 @@
-<div class="search-container">
-  <input type="search" class="rounded-input" placeholder="Search...">
-  <button mat-icon-button matSuffix aria-label="Search">
-    <mat-icon>search</mat-icon>
-  </button>
-</div>
+<form class="search-container" (ngSubmit)="onSubmitSearch()">
+  <mat-form-field class="full-width" appearance="fill">
 
+    <div class="search-container">
+      <input
+        matInput
+        type="text"
+        class="rounded-input"
+        placeholder="Search a movie..."
+        aria-label="Movie"
+        [formControl]="searchControl"
+             [matAutocomplete]="auto"
+             (keydown.enter)="onEnterKey()" >
+
+    </div>
+    <button
+      mat-icon-button
+      matSuffix
+      aria-label="Search"
+      type="submit">
+      <mat-icon>search</mat-icon>
+    </button>
+
+
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      autoActiveFirstOption
+      [displayWith]="displayMovieTitle"
+      (optionSelected)="onMovieSelected($event)"
+    >
+      @for (movie of filteredMovies | async; track movie.id) {
+        <mat-option [value]="movie" class="movie-option">
+          <app-mini-movie-card [movie]="movie"></app-mini-movie-card>
+        </mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

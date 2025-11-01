@@ -30,6 +30,16 @@ export class MovieService {
     );
   }
 
+  searchMovies(title: string) {
+    return this.http
+      .get<Movie[]>(environment.apiUrl + this.SUFFIX + `/search?title=${encodeURIComponent(title)}`).pipe(
+        map((response: any[]) =>
+          response ? response
+            .map(movieJson => Movie.fromJson(movieJson)) : []
+        )
+      );
+  }
+
 
   addMovie(movie: Movie) {
   }
