@@ -15,6 +15,7 @@ export class ActionService {
     new UserAction('Change Information', 'person', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'me'),
     new UserAction('Manage Movies', 'library_add', ['ADMIN', 'SUPER_ADMIN'], 'manageMovies'),
     new UserAction('Manage Users', 'supervisor_account', ['SUPER_ADMIN'], 'users'),
+    new UserAction('Logout', 'logout', ['USER', 'ADMIN', 'SUPER_ADMIN'], 'auth'),
   ];
 
 }

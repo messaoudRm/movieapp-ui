@@ -1,21 +1,32 @@
 <mat-card id="container">
   <form (submit)="register()" [formGroup]="registerFromGroup">
-    <h3>Register</h3>
-    <mat-form-field>
-      <mat-label>Username</mat-label>
-      <input matInput formControlName="username">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email">
-    </mat-form-field>
-    <button mat-flat-button [disabled]="registerFromGroup.invalid">Register</button>
-    @if (invalidUser){
-      <mat-error>invalid username password email</mat-error>
-    }
+    <mat-card-title>Register</mat-card-title>
+
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+
+      @if (invalidUser) {
+        <mat-error>Invalid username, password, or email</mat-error>
+      }
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-flat-button color="primary" [disabled]="registerFromGroup.invalid">
+        Register
+      </button>
+    </mat-card-actions>
   </form>
 </mat-card>

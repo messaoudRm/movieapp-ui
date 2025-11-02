@@ -5,7 +5,7 @@ import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService, Credentials} from '../../services/auth-service';
 import {Router} from '@angular/router';
 import {Subject, takeUntil} from 'rxjs';
-import {MatCard} from '@angular/material/card';
+import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from '@angular/material/card';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +17,9 @@ import {MatCard} from '@angular/material/card';
     MatError,
     ReactiveFormsModule,
     MatCard,
+    MatCardActions,
+    MatCardContent,
+    MatCardTitle,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

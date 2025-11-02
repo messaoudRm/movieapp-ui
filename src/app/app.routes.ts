@@ -1,6 +1,4 @@
 import {Routes} from '@angular/router';
-import {LoginComponent} from './auth/components/login.component/login.component';
-import {RegisterComponent} from './auth/components/register.component/register.component';
 import {NotFoundComponent} from './shared/components/not-found.component/not-found.component';
 import {authGuard} from './core/guards/auth-guard';
 import {MovieListComponent} from './shared/components/movie-list.component/movie-list.component';
@@ -17,17 +15,15 @@ import {
   WatchLaterMoviesListComponent
 } from './shared/components/watch-later-movies-list.component/watch-later-movies-list.component';
 import {UserCommentListComponent} from './shared/components/user-comment-list.component/user-comment-list.component';
+import {TabGroupAuthComponent} from './auth/components/tab-group-auth.component/tab-group-auth.component';
 
 export const routes: Routes = [{
   path: '',
   redirectTo: 'register',
   pathMatch: 'full',
 },{
-  path: 'login',
-  component: LoginComponent
-}, {
-  path: 'register',
-  component: RegisterComponent
+  path: 'auth',
+  component: TabGroupAuthComponent
 }, {
   path: 'home',
   component: MovieListComponent,

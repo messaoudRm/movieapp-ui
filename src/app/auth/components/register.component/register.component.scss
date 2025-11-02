@@ -1,4 +1,4 @@
-#container{
+#container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,8 +6,7 @@
   height: 100%;
 }
 
-form{
-  background-color: white;
+form {
   padding: 20px;
   border-radius: 10px;
   display: flex;
@@ -15,6 +14,25 @@ form{
   width: 400px;
 }
 
-mat-error{
+mat-card-title {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+mat-error {
   text-align: center;
 }
