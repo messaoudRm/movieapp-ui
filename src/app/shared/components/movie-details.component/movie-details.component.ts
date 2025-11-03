@@ -14,7 +14,6 @@ import {
   MatCardSubtitle,
   MatCardTitle
 } from '@angular/material/card';
-import {MatList} from '@angular/material/list';
 import {AuthService} from '../../../auth/services/auth-service';
 import {NotificationSnackBarService} from '../../services/notification-snack-bar-service';
 import {GenericUserMoviesService, MovieUserDto} from '../../services/generic-user-movies-service';
@@ -34,10 +33,9 @@ import {MovieCommentListComponent} from '../movie-comment-list.component/movie-c
     MatCardContent,
     MatCardActions,
     MatCardImage,
-    MatList,
     MatTab,
     MatTabGroup,
-    MovieCommentListComponent
+    MovieCommentListComponent,
   ],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.scss'

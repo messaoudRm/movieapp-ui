@@ -25,8 +25,9 @@ export class MovieListComponent implements OnInit, OnDestroy {
   movies: Movie[] = [];
   totalElements = 0;
   pageIndex = 0;
-  pageSize = 10;
+  pageSize = 20;
   showFirstLastButtons = true;
+  cols = 10;
 
   ngOnInit() {
     this.loadMovies(0, this.pageSize);
@@ -41,6 +42,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
           this.totalElements = response.totalElements;
           this.pageSize = response.pageSize;
           this.pageIndex = response.pageNumber;
+          this.updateCols();
       },
       error: err => {
         console.error('Error loading movies', err);
@@ -57,6 +59,9 @@ export class MovieListComponent implements OnInit, OnDestroy {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.loadMovies(event.pageIndex, event.pageSize);
+  }
+  private updateCols() {
+    this.cols = this.pageSize === 5 ? 5 : 10;
   }
 
 }

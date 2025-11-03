@@ -1,19 +1,14 @@
-.navframe-container {
+.nav-frame-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-.toolbar {
-  flex: 0 0 auto;
-  border-bottom: 1px solid #ccc;
-  background-color: white;
-  z-index: 10;
-}
-
-.side-nav {
-  flex: 1 1 auto;
-  overflow: auto;
+.main-content {
+  flex: 1;
   display: flex;
+  overflow: hidden;
+
 }

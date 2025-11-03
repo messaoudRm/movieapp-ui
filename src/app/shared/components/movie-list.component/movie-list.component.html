@@ -1,18 +1,20 @@
-<mat-grid-list cols="5" rowHeight="15:16" gutterSize="2px">
-  @for (movie of movies; track movie.id) {
-    <mat-grid-tile>
-      <app-movie [movie]="movie"/>
-    </mat-grid-tile>
-  } @empty {
-    <p>No movies found.</p>
-  }
-</mat-grid-list>
+<div class="movie-container">
+  <mat-grid-list [cols]="cols" rowHeight="2:3" gutterSize="5px">
+    @for (movie of movies; track movie.id) {
+      <mat-grid-tile>
+        <app-movie [movie]="movie"/>
+      </mat-grid-tile>
+    } @empty {
+      <p>No movies found.</p>
+    }
+  </mat-grid-list>
 
-<mat-paginator
-  [length]="totalElements"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="[10, 20, 50]"
-  [showFirstLastButtons]="showFirstLastButtons"
-  (page)="onPageChange($event)"
-  aria-label="Select page">
-</mat-paginator>
+  <mat-paginator
+    [length]="totalElements"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 20, 40]"
+    [showFirstLastButtons]="showFirstLastButtons"
+    (page)="onPageChange($event)"
+    aria-label="Select page">
+  </mat-paginator>
+</div>
