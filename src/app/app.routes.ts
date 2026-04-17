@@ -19,7 +19,7 @@ import {TabGroupAuthComponent} from './auth/components/tab-group-auth.component/
 
 export const routes: Routes = [{
   path: '',
-  redirectTo: 'register',
+  redirectTo: 'auth',
   pathMatch: 'full',
 },{
   path: 'auth',

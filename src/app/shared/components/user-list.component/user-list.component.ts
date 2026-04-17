@@ -57,7 +57,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   pageSize = 5;
   showFirstLastButtons = true;
 
-  displayedColumns: string[] = ['id', 'username', 'password', 'email', 'role', 'action'];
+  displayedColumns: string[] = ['id', 'username', 'email', 'role', 'action'];
   errorMessage = '';
 
   ngOnInit() {
