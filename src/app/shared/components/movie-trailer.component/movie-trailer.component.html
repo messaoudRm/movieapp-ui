@@ -1,0 +1,11 @@
+@if (videoId) {
+  <div class="trailer-container">
+    <youtube-player
+      [videoId]="videoId"
+      [width]="'100%'"
+      [height]="355">
+    </youtube-player>
+  </div>
+} @else {
+  <p>No trailer available</p>
+}

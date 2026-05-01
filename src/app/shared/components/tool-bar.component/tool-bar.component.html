@@ -9,12 +9,17 @@
 
   <span class="spacer-right"></span>
 
-  <button mat-icon-button aria-label="Favorite">
+  <button
+    mat-icon-button
+    aria-label="Favorite"
+    (click)="redirectToRickRoll()">
     <mat-icon>favorite</mat-icon>
   </button>
-  <button mat-icon-button aria-label="Share">
+
+  <button mat-icon-button aria-label="Share" [routerLink]="['/me']">
     <mat-icon>person</mat-icon>
   </button>
+
   <mat-slide-toggle
     [checked]="isChecked()"
     (change)="onToggle($event.checked)"></mat-slide-toggle>

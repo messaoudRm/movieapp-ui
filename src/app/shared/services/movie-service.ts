@@ -3,6 +3,7 @@ import {Movie} from '../../models/Movie';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs';
 import {environment} from '../../../environments/environment';
+import {MovieWithTrailer} from '../interface/MovieWithTrailer';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,11 @@ export class MovieService {
   }
 
   getMovieById(id: number) {
-    return this.http.get<any>(environment.apiUrl + this.SUFFIX + '/' + id).pipe(
-      map(movieJson => Movie.fromJson(movieJson))
+    return this.http.get<MovieWithTrailer>(environment.apiUrl + this.SUFFIX + '/' + id).pipe(
+      map(response => ({
+        movie: Movie.fromJson(response.movie),
+        trailerUrl: response.trailerUrl
+      }))
     );
   }
 

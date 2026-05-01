@@ -7,10 +7,11 @@ import {SearchBarComponent} from '../search-bar.component/search-bar.component';
 import {ThemeService} from '../../services/ThemeService';
 import {Theme} from '../../../models/Theme';
 import {FormsModule} from '@angular/forms';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-tool-bar',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatSlideToggle, SearchBarComponent, FormsModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatSlideToggle, SearchBarComponent, FormsModule, RouterLink],
   templateUrl: './tool-bar.component.html',
   styleUrl: './tool-bar.component.scss'
 })
@@ -26,6 +27,9 @@ export class ToolBarComponent {
 
   changeTheme(theme: Theme) {
     this.themeService.toggleTheme(theme);
+  }
+  redirectToRickRoll() {
+    window.location.href = 'https://www.youtube.com/watch?v=oHg5SJYRHA0';
   }
 
 }

@@ -26,6 +26,8 @@
               <div class="stat-item">Language: {{ movie.originalLanguage | uppercase }}</div>
             </div>
 
+            <app-movie-trailer [videoId]="movieTrailer"></app-movie-trailer>
+
             <mat-card-actions class="actions">
               <div class="action-buttons">
                 <button mat-raised-button (click)="addToWatched(movie.id)">WATCHED</button>

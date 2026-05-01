@@ -19,6 +19,7 @@ import {NotificationSnackBarService} from '../../services/notification-snack-bar
 import {GenericUserMoviesService, MovieUserDto} from '../../services/generic-user-movies-service';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
 import {MovieCommentListComponent} from '../movie-comment-list.component/movie-comment-list.component';
+import {MovieTrailerComponent} from '../movie-trailer.component/movie-trailer.component';
 
 @Component({
   selector: 'app-movie-details',
@@ -36,6 +37,7 @@ import {MovieCommentListComponent} from '../movie-comment-list.component/movie-c
     MatTab,
     MatTabGroup,
     MovieCommentListComponent,
+    MovieTrailerComponent,
   ],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.scss'
@@ -50,6 +52,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
 
   private destroy$ = new Subject<void>();
   protected movie!: Movie;
+  protected movieTrailer: string | null = null;
   protected genres: string[] = [];
 
   ngOnInit(): void {
@@ -72,10 +75,12 @@ export class MovieDetailsComponent implements OnInit, OnDestroy, OnChanges {
         .getMovieById(id)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
-          next: movie => {
-            this.movie = movie;
-            if (movie.genre) {
-              this.genres = movie.genre
+          next: movieWithTrailer => {
+            this.movie = movieWithTrailer.movie;
+            this.movieTrailer = movieWithTrailer.trailerUrl;
+
+            if (this.movie.genre) {
+              this.genres = this.movie.genre
                 .split(',')
                 .map((elem: string) => elem.trim())
             }
