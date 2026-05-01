@@ -4,7 +4,13 @@
       <mat-card class="movie-card-details">
         <div class="movie-details-split">
           <div class="movie-info">
-            <mat-card-title>{{ movie.title }}</mat-card-title>
+            <mat-card-title>{{ movie.title }} :
+              <mat-chip-set class="genres">
+                @for (genre of genres; track $index) {
+                  <mat-chip color="primary" selected>{{ genre }}</mat-chip>
+                }
+              </mat-chip-set>
+            </mat-card-title>
             <mat-card-subtitle>
               Release date: {{ movie.releaseDate }}
             </mat-card-subtitle>
@@ -13,20 +19,6 @@
               <p class="description">{{ movie.overview }}</p>
             </mat-card-content>
 
-            <mat-chip-set class="genres">
-              @for (genre of genres; track $index) {
-                <mat-chip color="primary" selected>{{ genre }}</mat-chip>
-              }
-            </mat-chip-set>
-
-            <div class="stats-grid">
-              <div class="stat-item">Popularity: {{ movie.popularity }}</div>
-              <div class="stat-item">Votes: {{ movie.voteCount }}</div>
-              <div class="stat-item">Average: {{ movie.voteAverage }}</div>
-              <div class="stat-item">Language: {{ movie.originalLanguage | uppercase }}</div>
-            </div>
-
-            <app-movie-trailer [videoId]="movieTrailer"></app-movie-trailer>
 
             <mat-card-actions class="actions">
               <div class="action-buttons">
@@ -41,8 +33,14 @@
             </mat-card-actions>
           </div>
 
-          <div class="poster-container">
-            <img mat-card-image [src]="movie.posterUrl" [alt]="'Poster of ' + movie.title" />
+          <div class="media-container">
+            <app-movie-trailer [videoId]="movieTrailer"></app-movie-trailer>
+            <div class="stats-grid">
+              <div class="stat-item">Popularity: {{ movie.popularity }}</div>
+              <div class="stat-item">Votes: {{ movie.voteCount }}</div>
+              <div class="stat-item">Average: {{ movie.voteAverage }}</div>
+              <div class="stat-item">Language: {{ movie.originalLanguage | uppercase }}</div>
+            </div>
           </div>
         </div>
       </mat-card>
