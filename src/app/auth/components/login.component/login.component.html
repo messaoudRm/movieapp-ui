@@ -6,12 +6,12 @@
     <mat-card-content>
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput formControlName="username" />
+        <input matInput formControlName="username" id="login-username" />
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" />
+        <input matInput type="password" formControlName="password" id="login-password" />
       </mat-form-field>
 
       @if (invalidCredentials) {
@@ -20,7 +20,7 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <button mat-flat-button [disabled]="loginFromGroup.invalid">
+      <button mat-flat-button [disabled]="loginFromGroup.invalid" id="login-submit">
         Login
       </button>
     </mat-card-actions>

@@ -1,10 +1,10 @@
 <mat-tab-group mat-stretch-tabs [(selectedIndex)]="selectedTabIndex" >
 
-  <mat-tab label="Login">
+  <mat-tab label="Login" id="tab-login">
     <app-login></app-login>
   </mat-tab>
 
-  <mat-tab label="Register">
+  <mat-tab label="Register" id="tab-register">
     <app-register (switchToLogin)="goToLoginTab()" ></app-register>
   </mat-tab>
 
