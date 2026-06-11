@@ -1,6 +1,6 @@
 <div class="movie-details-wrapper">
   <mat-tab-group mat-stretch-tabs class="full-screen-tabs">
-    <mat-tab label="Details">
+    <mat-tab label="Details" id="tab-details">
       <mat-card class="movie-card-details">
         <div class="movie-details-split">
           <div class="movie-info">
@@ -22,13 +22,13 @@
 
             <mat-card-actions class="actions">
               <div class="action-buttons">
-                <button mat-raised-button (click)="addToWatched(movie.id)">WATCHED</button>
-                <button mat-raised-button (click)="addToWatchLater(movie.id)">WATCH LATER</button>
-                <button mat-raised-button (click)="addToFavorite(movie.id)">LIKE</button>
+                <button mat-raised-button id="btn-watched" (click)="addToWatched(movie.id)">WATCHED</button>
+                <button mat-raised-button id="btn-watch-later" (click)="addToWatchLater(movie.id)">WATCH LATER</button>
+                <button mat-raised-button id="btn-like" (click)="addToFavorite(movie.id)">LIKE</button>
 
-                <button mat-raised-button (click)="deleteFromWatched(movie.id)">UNWATCHED</button>
-                <button mat-raised-button (click)="deleteFromWatchLater(movie.id)">REMOVE WATCH LATER</button>
-                <button mat-raised-button (click)="deleteFromFavorite(movie.id)">UNLIKE</button>
+                <button mat-raised-button id="btn-unwatched" (click)="deleteFromWatched(movie.id)">UNWATCHED</button>
+                <button mat-raised-button id="btn-remove-watch-later" (click)="deleteFromWatchLater(movie.id)">REMOVE WATCH LATER</button>
+                <button mat-raised-button id="btn-unlike" (click)="deleteFromFavorite(movie.id)">UNLIKE</button>
               </div>
             </mat-card-actions>
           </div>
@@ -54,7 +54,7 @@
       </mat-card>
     </mat-tab>
 
-    <mat-tab label="Comments">
+    <mat-tab label="Comments" id="tab-comments">
       <mat-card class="movie-card-details">
         <div class="movie-details-split">
           <div class="comments-section">

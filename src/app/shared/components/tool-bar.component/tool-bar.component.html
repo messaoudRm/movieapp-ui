@@ -1,5 +1,9 @@
 <mat-toolbar class="toolbar">
-  <button type="button" matButton (click)="menuClick.emit()" aria-label="Menu">
+  <button
+    matButton
+    type="button"
+    id="menu-toggle"
+    (click)="menuClick.emit()" aria-label="Menu">
     <mat-icon>menu</mat-icon>
   </button>
   <span>Movie App</span>
@@ -20,7 +24,7 @@
     <mat-icon>person</mat-icon>
   </button>
 
-  <mat-slide-toggle
+  <mat-slide-toggle id="theme-toggle"
     [checked]="isChecked()"
     (change)="onToggle($event.checked)"></mat-slide-toggle>
 </mat-toolbar>

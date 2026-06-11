@@ -2,7 +2,9 @@
   @for (action of actionList; track action){
 
     <mat-list-item role="listitem">
-      <button matButton (click)="navigeteTo(action.url)">
+      <button matButton
+              [id]="'nav-' + action.url"
+              (click)="navigeteTo(action.url)">
         {{ action.name }}
         <mat-icon>{{ action.icon }}</mat-icon>
       </button>
