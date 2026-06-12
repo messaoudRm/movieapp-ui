@@ -44,6 +44,7 @@
     <td mat-cell *matCellDef="let comment">
       <button
         mat-icon-button
+        [id]="'btn-delete-' + comment.id"
         color="warn"
         aria-label="Delete"
         (click)="deleteComment(comment.id)">
