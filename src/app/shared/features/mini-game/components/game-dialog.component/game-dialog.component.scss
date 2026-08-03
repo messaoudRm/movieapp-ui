@@ -1,0 +1,12 @@
+.game-card-details {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 12px;
+}

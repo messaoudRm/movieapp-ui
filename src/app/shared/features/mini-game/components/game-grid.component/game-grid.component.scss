@@ -1,0 +1,81 @@
+$cell-size: 30px;
+
+.game-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.board {
+  position: relative;
+  width: $cell-size * 15;
+  height: $cell-size * 15;
+  display: grid;
+  grid-template-columns: repeat(15, $cell-size);
+  grid-template-rows: repeat(15, $cell-size);
+}
+
+.cell {
+  width: $cell-size;
+  height: $cell-size;
+  box-sizing: border-box;
+  background: #000;
+  position: relative;
+}
+
+.wall {
+  background: #0000ff;
+}
+
+.dot {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+}
+
+.entity {
+  position: absolute;
+  width: $cell-size;
+  height: $cell-size;
+
+}
+
+.apple {
+  width: 10px;
+  height: 10px;
+  margin: calc(($cell-size - 10px) / 2);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.message {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #4caf50;
+  margin: 0;
+}
+
+.final-score {
+  font-size: 1.1rem;
+  color: #ff9800;
+  margin: 0;
+}

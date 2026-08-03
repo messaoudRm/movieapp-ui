@@ -1,0 +1,63 @@
+<div class="game-wrapper">
+  @if (state) {
+    <mat-chip-set class="stats">
+      <mat-chip selected>SCORE: {{ state.score }}</mat-chip>
+      <mat-chip selected>LIVES: {{ state.vies }}</mat-chip>
+    </mat-chip-set>
+
+    <div class="board">
+      @for (row of state.carte.tuiles; track $index) {
+        @for (cell of row; track $index) {
+          <div
+            class="cell"
+            [class.wall]="cell === 'MUR'"
+            [class.empty]="cell === 'VIDE' || cell === 'POINT' || cell === 'PORTE' || cell === 'BONUS'"
+          >
+            @if (cell === 'POINT') {
+              <div class="dot"></div>
+            }
+          </div>
+        }
+      }
+
+      <div class="entity"
+           [style.background]="state.pacman.couleur"
+           [style.left.px]="toPixelsX(state.pacman.position)"
+           [style.top.px]="toPixelsY(state.pacman.position)"></div>
+
+      @for (ghost of state.fantomes; track $index) {
+        <div class="entity"
+             [style.background]="ghost.couleur"
+             [style.left.px]="toPixelsX(ghost.position)"
+             [style.top.px]="toPixelsY(ghost.position)"></div>
+      }
+
+      @for (apple of state.pommes; track $index) {
+        @if (apple.actif) {
+          <div class="entity apple"
+               [style.background]="apple.couleur"
+               [style.left.px]="toPixelsX(apple.position)"
+               [style.top.px]="toPixelsY(apple.position)"></div>
+        }
+      }
+
+      @if (state.statut === 'EN_ATTENTE') {
+        <div class="overlay">
+          <p class="message">Good luck</p>
+        </div>
+      }
+
+      @if (state.statut === 'GAME_OVER' || state.statut === 'VICTOIRE') {
+        <div class="overlay">
+          @if (state.statut === 'GAME_OVER') {
+            <p class="message">Game Over</p>
+          } @else {
+            <p class="message">You Win</p>
+          }
+          <p class="final-score">SCORE: {{ state.score }}</p>
+          <button mat-raised-button id="btn-restart" (click)="restart()">RESTART</button>
+        </div>
+      }
+    </div>
+  }
+</div>
